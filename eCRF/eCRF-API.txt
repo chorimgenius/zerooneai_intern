@@ -1,0 +1,10 @@
+참고
+gqlgen - API 함수 자동생성 generate 해서 사용
+
+subject 대신 new subject 사용할 것
+
+브랜치 새로 생성해서 git에 올릴 것
+
+create 부분만 다음주 월요일까지
+
+

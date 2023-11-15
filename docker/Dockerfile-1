@@ -1,0 +1,21 @@
+FROM python:3.10
+
+WORKDIR /tf/
+
+RUN mkdir -p /tf/submission/log  \
+             /tf/submission/result \
+             /tf/submission/submit_files \
+             /tf/submission/submitted
+
+RUN apt-get update && \
+    apt install -y curl unzip fontconfig && \
+    pip install jupyter ipykernel numpy pandas matplotlib seaborn scikit-learn fpdf
+
+RUN curl -o nanumfont.zip http://cdn.naver.com/naver/NanumFont/fontfiles/NanumFont_TTF_ALL.zip && \
+    mkdir -p /usr/share/fonts/truetype/nanum && \
+    unzip -d /usr/share/fonts/truetype/nanum ./nanumfont.zip && \
+    rm -rf ~/.cache/matplotlib/* &&\
+    fc-cache -f -v && \
+    rm -rf ./nanumfont.zip
+
+ENTRYPOINT ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--notebook-dir=/tf/"]
